@@ -1,0 +1,86 @@
+<html>
+    <head>
+		<style>
+		#snackbar {
+			visibility: hidden;
+			min-width: 250px;
+			margin-left: -125px;
+			background-color: #333;
+			color: #fff;
+			text-align: center;
+			border-radius: 2px;
+			padding: 16px;
+			position: fixed;
+			z-index: 1;
+			left: 50%;
+			bottom: 30px;
+			font-size: 17px;
+		}
+
+		#snackbar.show {
+			visibility: visible;
+			-webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+			animation: fadein 0.5s, fadeout 0.5s 2.5s;
+		}
+
+		@-webkit-keyframes fadein {
+			from {bottom: 0; opacity: 0;}
+			to {bottom: 30px; opacity: 1;}
+		}
+
+		@keyframes fadein {
+			from {bottom: 0; opacity: 0;}
+			to {bottom: 30px; opacity: 1;}
+		}
+
+		@-webkit-keyframes fadeout {
+			from {bottom: 30px; opacity: 1;}
+			to {bottom: 0; opacity: 0;}
+		}
+
+		@keyframes fadeout {
+			from {bottom: 30px; opacity: 1;}
+			to {bottom: 0; opacity: 0;}
+		}
+		</style>
+    </head>
+	<body onload="loadimage();getinput();myFunction('Welcome',1000)" >
+		
+		<p id="image"> </p>
+		<table border ="0" >
+			<tr>
+				<td style="padding-left: 50px;">
+					<canvas id="sudoku" width="900" height="550"></canvas>
+				</td>
+				<td>
+					<div id="info" ><p><center>Please insert your own sudoku puzzel here :)  </center></p></div>
+					<p id="input"   ></p>
+					<p id="stats"  hidden>
+					<canvas id="statistics" width="250" height="550"></canvas>
+					</p>
+
+				</td>
+			</tr>
+			<tr><td style="padding-left: 150px;">
+							<input id="randombtn"  type="button" onclick="loadSudoku()" value="Load Exisitng Sudoku" >
+							<input id="bruteforce" type="button" onclick="startbruteforce()" value="Bruteforce">
+							</td>
+			</tr>
+		</table>
+		<div id="snackbar"><p id="toast"></p></div>
+		<br><br>
+		
+	</body>
+</html>
+
+		<script >
+			document.getElementById("image").innerHTML = ''  ;
+			for(var i=0;i<10;i++){
+				document.getElementById("image").innerHTML += "<img id='"+i+"' src='img/"+i  +".png'  height='50' width='50'  hidden>";
+				if(i!=0){
+					document.getElementById("image").innerHTML += "<img id='d"+i+"' src='img/d"+i  +".png'  height='50' width='50' onclick='editBox(this)' hidden>";
+					document.getElementById("image").innerHTML += "<img id='r"+i+"' src='img/r"+i  +".png'  height='50' width='50' onclick='editBox(this)' hidden>";
+				}
+
+			}
+		</script>
