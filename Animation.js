@@ -46,6 +46,17 @@ var $animation= [];
 
 var $current = 1;
 
+function animate(){
+	var arr;
+	arr = $animation.shift();
+	if(arr){
+		$global_animation[ arr[0] ][arr[1]] = arr[2];
+		rendersmartimage(arr[0],arr[1],arr[2]);
+		rendercount($current++);
+		setInterval(animate,1);
+	}
+}
+
 function rendercount(current){
 	var canvas = document.getElementById("statistics");
    	var ctx = canvas.getContext("2d");
